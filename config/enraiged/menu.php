@@ -18,6 +18,15 @@ return [
         ],
     ],
 
+    'Realty' => [
+        'icon' => 'pi pi-building',
+        'route' => '/realty',
+        'secure' => [
+            'method' => 'roleIs',
+            'role' => 'Administrator',
+        ],
+    ],
+
     'Manage Users' => [
         'icon' => 'pi pi-users',
         'route' => '/users',
