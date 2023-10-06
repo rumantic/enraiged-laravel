@@ -27,7 +27,7 @@ Route::get('/', function () {
 
 
 Route::middleware(['auth', 'verified', 'enraiged'])
-    ->namespace('\App\Http\Controllers\Users')
+    ->namespace('\App\Http\Controllers\Realty')
     ->group(function(){
 
         Route::prefix('realty')
@@ -66,9 +66,8 @@ Route::middleware(['auth', 'verified', 'enraiged'])
                     });
                 */
             });
-        /*
-        Route::prefix('api/users')
-            ->as('users.')
+        Route::prefix('api/realty')
+            ->as('realty.')
             ->group(function () {
                 Route::namespace('Index')
                     ->prefix('index')
@@ -77,10 +76,10 @@ Route::middleware(['auth', 'verified', 'enraiged'])
                         Route::match(['GET', 'POST'], 'data', 'Data')->name('data');
                         Route::match(['GET', 'POST'], 'export', 'Export')->name('export');
                     });
-
+/*
                 Route::match(['GET', 'POST'], 'available', 'Available')->name('available');
                 Route::delete('{user}', 'Destroy')->name('delete');
                 Route::patch('{user}', 'Restore')->name('restore');
+*/
             });
-        */
     });

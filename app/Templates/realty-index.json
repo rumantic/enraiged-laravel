@@ -1,7 +1,7 @@
 {
     "id": "realty.index",
     "class": "users-index shadow-1",
-    "empty": "There are no users to display",
+    "empty": "There are no realty to display",
     "prefix": "realty.",
     "table": "realty",
     "uri": "realty.index.data",
@@ -10,14 +10,7 @@
             "class": "p-button-success",
             "icon": "pi pi-plus",
             "label": "User",
-            "tooltip": "Create a new user"
-        },
-        "impersonate": {
-            "class": "p-button-secondary",
-            "icon": "pi pi-user",
-            "secure": { "method": "roleIs", "role": "Administrator" },
-            "tooltip": "Impersonate",
-            "type": "row"
+            "tooltip": "Create a ads"
         },
         "show": {
             "class": "p-button-primary",
@@ -30,62 +23,26 @@
             "icon": "pi pi-pencil",
             "tooltip": "Edit user",
             "type": "row"
-        },
-        "delete": {
-            "class": "p-button-danger",
-            "confirm": "Are you certain you wish to delete this user?",
-            "icon": "pi pi-trash",
-            "method": "delete",
-            "secure": { "method": "isNotDeleted" },
-            "tooltip": "Delete user",
-            "type": "row"
-        },
-        "restore": {
-            "class": "p-button-success",
-            "confirm": "Are you certain you wish to restore this user?",
-            "icon": "pi pi-trash",
-            "method": "patch",
-            "secure": { "method": "isDeleted" },
-            "tooltip": "Restore user",
-            "type": "row"
         }
     },
     "columns": {
-        "avatar": {
-            "class": "text-center width-64",
-            "custom": true,
-            "exportable": false,
-            "source": "avatar"
-        },
-        "name": {
-            "label": "Name",
-            "searchable": true,
-            "sortable": true,
-            "source": ["profiles.first_name", "profiles.last_name"]
-        },
-        "email": {
-            "label": "Email",
+        "text": {
+            "label": "Text",
             "searchable": true,
             "sortable": true
-        },
-        "role": {
-            "class": "width-160",
-            "label": "Role",
-            "searchable": true,
-            "source": "roles.name"
         },
         "created_at": {
             "class": "width-160",
             "custom": true,
             "label": "Created",
             "sortable": true,
-            "source": "users.created_at"
+            "source": "realty.created_at"
         },
         "is_active": {
             "class": "text-center width-96",
             "custom": true,
             "label": "Active",
-            "source": "users.is_active",
+            "source": "realty.active",
             "sortable": true
         }
     },
@@ -93,32 +50,9 @@
         "chunk": 100,
         "default": "XLSX",
         "options": ["CSV", "XLSX"],
-        "uri": "/api/users/index/export"
+        "uri": "/api/realty/index/export"
     },
     "filters": {
-        "role_id": {
-            "clearable": true,
-            "default": null,
-            "options": {
-                "scope": "strictVisibility",
-                "source": "Enraiged\\Roles\\Models\\Role",
-                "type": "model"
-            },
-            "placeholder": "All Roles",
-            "secure": {"method": "roleIs", "role": "Administrator"},
-            "type": "select"
-        },
-        "deleted": {
-            "clearable": true,
-            "options": {
-                "values": [
-                    {"id": "Deleted", "name": "Deleted", "scope": "whereDeleted"}
-                ]
-            },
-            "placeholder": "Not Deleted",
-            "secure": {"method": "roleIs", "role": "Administrator"},
-            "type": "select"
-        }
     },
     "pagination": {
         "options": [5, 10, 20, 50, 100, 200, 500],

@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Datatables;
+use App\Http\Resources\Realty\IndexResource;
 use App\Models\Realty;
 use Enraiged\Tables\Builders\TableBuilder;
 use Enraiged\Tables\Contracts\ProvidesDefaultSort;
 use Enraiged\Tables\Contracts\ProvidesTableQuery;
-use Enraiged\Users\Models\User;
 use Enraiged\Users\Tables\Exporters\IndexExporter;
-use Enraiged\Users\Tables\Resources\IndexResource;
 use Enraiged\Users\Traits\Assertions\AssertIsDeleted;
 use Enraiged\Users\Traits\Assertions\AssertIsNotDeleted;
 use Illuminate\Database\Eloquent\Builder;
@@ -36,8 +35,7 @@ class RealtyIndex extends TableBuilder implements ProvidesDefaultSort, ProvidesT
     public function defaultSort()
     {
         $this->builder
-            ->orderBy('profiles.first_name')
-            ->orderBy('profiles.last_name');
+            ->orderBy('realty.id');
     }
 
     /**
@@ -45,10 +43,12 @@ class RealtyIndex extends TableBuilder implements ProvidesDefaultSort, ProvidesT
      *
      *  @return \Illuminate\Database\Eloquent\Builder
      */
+
     public function query(): Builder
     {
         //return $this->nonResourceBuild();
 
-        return User::reportable();
+        return Realty::query();
     }
+
 }
